@@ -1,0 +1,16 @@
+.header {
+	/* height: 15vh; */
+	background: #000;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 8px;
+}
+
+.logo_text {
+	height: 50px;
+}
+
+.logo {
+	height: 30px;
+}
