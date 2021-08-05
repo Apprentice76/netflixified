@@ -4,9 +4,9 @@ import Banner from './Banner'
 import Row from './Row'
 
 const App = () => {
-	return (
-		<>
-			<Header />
+    return (
+        <>
+            <Header />
 			{/* header */}
 			<Banner />
 			{/* banner */}
@@ -14,7 +14,7 @@ const App = () => {
 				<div className={styles.movies_row_title}></div>
 				<div className={styles.movies}></div>
             </div>
-            <Row />
+            <Row title='Netflix Originals' movieType='netflix-originals' />
 		</>
 	)
 }
