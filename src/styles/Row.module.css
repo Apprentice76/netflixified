@@ -1,0 +1,19 @@
+.row__title {
+    margin: 10px 0;
+    font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0 0 0 10px;
+}
+
+.row__poster_container {
+    display: flex;
+    align-items: center;
+    padding: 5px 5px 15px;
+    overflow: hidden;
+}
+
+.row__poster {
+    height: 200px;
+    width: 135px;
+    margin: 0 5px;
+    border-radius: 5px;
+}
