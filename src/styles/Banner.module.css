@@ -10,7 +10,7 @@
 	padding: 0 25px;
 }
 
-.banner_content {
+.banner__content {
 	height: inherit;
 	display: flex;
 	flex-flow: column nowrap;
@@ -20,22 +20,22 @@
 	color: aliceblue;
 }
 
-.banner_content > div {
+.banner__content > div {
 	margin: 5px 0;
 }
 
-.banner_title {
+.banner__title {
 	font-size: 2em;
 	font-weight: 700;
 }
 
-.banner_buttons {
+.banner__button_container {
 	display: flex;
 	width: 210px;
 	justify-content: space-between;
 }
 
-.button {
+.banner__button {
 	padding: 6px 20px;
 	background-color: #0f0f0f;
 	opacity: 0.8;

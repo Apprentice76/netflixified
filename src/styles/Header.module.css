@@ -7,10 +7,10 @@
 	padding: 0 8px;
 }
 
-.logo_text {
+.header__logo_text {
 	height: 50px;
 }
 
-.logo {
+.header__logo {
 	height: 30px;
 }
