@@ -3,3 +3,4 @@ config.html
 .env
 **/Debug*
 cra-minified*
+requests.rest
