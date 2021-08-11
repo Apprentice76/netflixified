@@ -6,8 +6,8 @@ const Banner = () => {
 			<div className={styles.banner__content}>
 				<div className={styles.banner__title}>Ginny &amp; Georgia</div>
 				<div className={styles.banner__button_container}>
-					<div className={styles.banner__button}>Play</div>
-					<div className={styles.banner__button}>Add to List</div>
+					<button className={styles.banner__button}>Play</button>
+					<button className={styles.banner__button}>Add to List</button>
 				</div>
 				<div className={styles.banner__description}>
 					Angsty and awkward fifteen year old Ginny Miller often feels

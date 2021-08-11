@@ -13,7 +13,7 @@ const LoginForm = () => {
 					<input type='password' className={styles.login__input} required />
 					<label className={styles.login__floating_label}>Password</label>
 				</div>
-				<div className={styles.login__button}>Sign in</div>
+				<button className={styles.login__button}>Sign in</button>
 				<div className={styles.login__options}>
 					<div className={styles.login__options_choice}>
 						<input type='checkbox' name='choice' id='' />

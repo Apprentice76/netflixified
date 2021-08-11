@@ -1,5 +1,5 @@
 import styles from '../styles/Row.module.css'
-import firebaseDb from '../firebase/firebase'
+import firebaseDb from '../config/firebase'
 import { useState, useEffect } from 'react'
 
 const Row = (props) => {
