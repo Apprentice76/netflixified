@@ -67,13 +67,19 @@ input:focus {
 }
 
 .login__button {
+    font-size: 1.2rem;
+    cursor: pointer;
     width: 300px;
-    /* border: solid; */
+    border: none;
     margin: 15px auto;
     text-align: center;
     background-color: rgb(229, 9, 20);
     padding: 10px 0 15px;
     border-radius: 5px;
+}
+
+.login__button:hover {
+    background: rgb(182, 32, 40);
 }
 
 .login__options {
