@@ -1,19 +1,24 @@
 import styles from '../styles/Row.module.css'
-import firebaseDb from '../config/firebase'
+// import firebaseDb from '../config/firebase'
+import axios from 'axios'
 import { useState, useEffect } from 'react'
 
 const Row = (props) => {
     const { title, movieType } = props
     const [rowData, setRowData] = useState([])
 
-    const fetchMovies = (type) => {
-        const moviesRef = firebaseDb.ref(`movies/${type}`)
-        moviesRef.on('value', (snapshot) => {
-            const movies = snapshot.val()
-            if (movies && movies.length !== 0) {
-                setRowData(() => movies)
-            }
-        })
+    const fetchMovies = async (type) => {
+        // const moviesRef = firebaseDb.ref(`movies/${type}`)
+        // moviesRef.on('value', (snapshot) => {
+        //     const movies = snapshot.val()
+        //     if (movies && movies.length !== 0) {
+        //         setRowData(() => movies)
+        //     }
+        // })
+
+        const response = await axios.get(type)
+        setRowData(() => response.data.results)
+        return response
     }
 
     useEffect(() => {
@@ -26,9 +31,9 @@ const Row = (props) => {
 			<div className={styles.row__poster_container}>
 				{rowData.map((movie) => (
 					<img
-						key={movie.original_name}
+						key={movie.poster_path}
 						className={styles.row__poster}
-						src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+						src={`https://image.tmdb.org/t/p/w154${movie.poster_path}`}
 						alt={movie.original_title}
 					/>
 				))}
