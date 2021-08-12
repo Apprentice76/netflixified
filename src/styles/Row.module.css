@@ -7,13 +7,29 @@
 .row__poster_container {
     display: flex;
     align-items: center;
-    padding: 5px 5px 15px;
-    overflow: hidden;
+    padding: 12px 20px;
+    /* overflow: hidden; */
+    overflow-x: scroll;
+}
+
+.row__poster_container::-webkit-scrollbar {
+    display: none;
+}
+
+.row__poster, .row__poster_large {
+    margin: 0 10px;
+    border-radius: 5px;
+    transition: transform 300ms;
 }
 
 .row__poster {
-    height: 200px;
-    width: 135px;
-    margin: 0 5px;
-    border-radius: 5px;
+    width: 250px;
+}
+
+.row__poster_large {
+    height: 300px;
+}
+
+.row__poster:hover, .row__poster_large:hover {
+    transform: scale(1.07);
 }
