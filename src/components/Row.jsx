@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 
 const Row = (props) => {
-    const { title, movieType } = props
+    const { title, movieType, large } = props
     const [rowData, setRowData] = useState([])
 
     const fetchMovies = async (type) => {
@@ -32,8 +32,12 @@ const Row = (props) => {
 				{rowData.map((movie) => (
 					<img
 						key={movie.poster_path}
-						className={styles.row__poster}
-						src={`https://image.tmdb.org/t/p/w154${movie.poster_path}`}
+						className={large ? styles.row__poster_large : styles.row__poster}
+						src={
+							large
+								? `https://image.tmdb.org/t/p/w342${movie.poster_path}`
+								: `https://image.tmdb.org/t/p/w300${movie.backdrop_path}`
+						}
 						alt={movie.original_title}
 					/>
 				))}

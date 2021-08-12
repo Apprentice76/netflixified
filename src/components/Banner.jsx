@@ -33,7 +33,7 @@ const Banner = () => {
 	// `
 	// console.log(bannerData.backdrop_path)
     const bannerStyle = {
-		background: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(10, 10, 10, 1) 90%), url('https://image.tmdb.org/t/p/w1280/${bannerData.backdrop_path}') no-repeat center center/cover`,
+		background: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(10, 10, 10, 1) 90%), url('https://image.tmdb.org/t/p/original/${bannerData.backdrop_path}') no-repeat center center/cover`,
 		height: '60vh',
 		padding: '0 25px',
 	}
