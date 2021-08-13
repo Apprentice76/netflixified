@@ -4,7 +4,7 @@
 			rgba(0, 0, 0, 0) 0%, 
 			rgba(10, 10, 10, 1) 90%
 		),
-		url(../img/banner_img.jpg) no-repeat center center/cover;
+		url(../img/banner_img.jpg) no-repeat top center/cover;
 	height: 60vh;
 	padding: 0 25px;
 }
