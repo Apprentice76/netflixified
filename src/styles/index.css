@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -8,4 +10,56 @@
 
 body {
     background: #0a0a0a;
+}
+
+.swiper-slide {
+    /* padding: 0px 10px; */
+}
+
+.swiper-slide-active {
+}
+
+.swiper-wrapper {
+    margin-top: 20px;
+    align-items: center;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    color: #0a0a0a;
+    font-weight: 1000;
+    text-shadow: 0px 0px 8px #fff;
+    /* background: #fff; */
+    /* padding: 50px 30px; */
+    /* transform: translateY(-25%) */
+    /* height: 60px; */
+}
+
+.swiper-button-prev.swiper-button-disabled, .swiper-button-next.swiper-button-disabled {
+    /* opacity: 0; */
+}
+
+.swiper-pagination {
+	position: absolute;
+	top: 0px;
+	right: 10px;
+	width: auto !important;
+    height: 0;
+	left: auto !important;
+}
+.swiper-pagination-bullet {
+	padding: 0px 10px;
+	border-radius: 0;
+	width: auto;
+	height: 5px;
+	opacity: 1;
+	background: #353535;
+    transition: background 300ms;
+    position: relative;
+    top: 1px;
+}
+.swiper-pagination-bullet-active {
+	color:#fff;
+	background: #fff;
+    height: 6px;
+    top: 1px;
 }

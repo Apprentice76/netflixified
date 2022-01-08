@@ -3,6 +3,15 @@ import styles from '../styles/Row.module.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
+// Swiper Modules
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
+import { Navigation, Pagination } from 'swiper'
+
+// Swiper styles
+import 'swiper/swiper.min.css'
+import 'swiper/modules/navigation/navigation.min.css'
+import 'swiper/modules/pagination/pagination.min.css'
+
 const Row = (props) => {
 	const { title, movieType, large } = props
 	const [rowData, setRowData] = useState([])
@@ -21,16 +30,6 @@ const Row = (props) => {
 		return response
 	}
 
-    const scroll = (event, dir) => {
-        if (dir === 'right') {
-            const container = event.target.previousElementSibling
-            container.scrollLeft += container.clientWidth
-        } else {
-            const container = event.target.nextElementSibling
-			container.scrollLeft -= container.clientWidth
-        }
-	}
-
 	useEffect(() => {
 		fetchMovies(movieType)
 	}, [movieType])
@@ -38,21 +37,44 @@ const Row = (props) => {
 	return (
 		<div className={styles.row}>
 			<h3 className={styles.row__title}>{title}</h3>
-			<div className={styles.row__wrapper}>
-				<button
-					className={styles.row__poster_left_scroll}
-                    type='button'
-                    onClick={(e) => scroll(e, 'left')}
-                >
-					&lt;
-				</button>
-				<div className={styles.row__poster_container}>
-					{rowData.map(
-						(movie) =>
-							((large && movie.poster_path) ||
-								(!large && movie.backdrop_path)) && (
+			<Swiper
+				modules={[Navigation, Pagination]}
+				spaceBetween={0}
+				slidesPerView={6}
+				speed={800}
+				breakpoints={{
+					320: {
+						slidesPerView: 2,
+						slidesPerGroup: 2,
+					},
+					670: {
+						slidesPerView: 3,
+						slidesPerGroup: 3,
+					},
+					900: {
+						slidesPerView: 4,
+						slidesPerGroup: 4,
+					},
+					1100: {
+						slidesPerView: 5,
+						slidesPerGroup: 5,
+					},
+					1400: {
+						slidesPerView: 6,
+						slidesPerGroup: 6,
+					},
+				}}
+				navigation
+				pagination={{
+					clickable: true,
+				}}>
+				{rowData.map(
+					(movie) =>
+						((large && movie.poster_path) ||
+							(!large && movie.backdrop_path)) && (
+							<SwiperSlide key={movie.poster_path}>
 								<img
-									key={movie.poster_path}
+									// key={movie.poster_path}
 									className={
 										large
 											? styles.row__poster_large
@@ -65,16 +87,10 @@ const Row = (props) => {
 									}
 									alt={movie.original_title}
 								/>
-							)
-					)}
-				</div>
-				<button
-					className={styles.row__poster_right_scroll}
-					type='button'
-					onClick={(e) => scroll(e, 'right')}>
-					&gt;
-				</button>
-			</div>
+							</SwiperSlide>
+						)
+				)}
+			</Swiper>
 		</div>
 	)
 }

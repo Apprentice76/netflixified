@@ -10,7 +10,7 @@ const Home = () => {
 			{/* header */}
 			<Banner />
 			{/* banner */}
-			<Row title='Netflix Originals' movieType={requests.fetchOriginals} large/>
+			<Row title='NETFLIX ORIGINALS' movieType={requests.fetchOriginals} large/>
 			<Row title='Action Movies' movieType={requests.action} />
 		</>
 	)
