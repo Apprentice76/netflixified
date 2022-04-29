@@ -5,10 +5,10 @@ import styles from '../styles/Login.module.css'
 const Login = () => {
 	return (
 		<>
-            <Header />
-            <div className={styles.login__background}>
-                <LoginForm />
-            </div>
+			<Header />
+			<div className={styles.login__background}>
+				<LoginForm />
+			</div>
 		</>
 	)
 }

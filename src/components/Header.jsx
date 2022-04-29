@@ -6,7 +6,7 @@ const Header = () => {
 	const [navTransition, setNavTransition] = useState(false)
 
 	const transitionNav = () => {
-		if (window.scrollY > 100) {
+		if (window.scrollY !== 0) {
 			setNavTransition(true)
 		} else {
 			setNavTransition(false)
@@ -25,7 +25,8 @@ const Header = () => {
 				navTransition
 					? {}
 					: {
-							background: 'linear-gradient(to top, transparent 0%, rgb(0,0,0,0.3) 50%)',
+							background:
+								'linear-gradient(to top, transparent 0%, rgb(0,0,0,0.3) 50%)',
 					  }
 			}>
 			<div className={styles.header__left}>

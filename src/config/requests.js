@@ -1,7 +1,8 @@
 const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY
 const api = 'https://api.themoviedb.org/3/'
 
-const url = (type, params='') => `${api}${type}?api_key=${TMDB_API_KEY}&language=en-US${params}&page=1`
+const url = (type, params = '') =>
+	`${api}${type}?api_key=${TMDB_API_KEY}&language=en-US${params}&page=1`
 
 const requests = {
 	trendingNow: url('trending/all/week'),

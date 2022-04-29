@@ -1,9 +1,15 @@
 .login__background {
-    background: linear-gradient(to bottom,rgba(10, 10, 10, 1) -25%,rgba(0,0,0, 0.5) 50%,rgba(10, 10, 10, 1) 125%),url(../img/website_bg.jpg) center no-repeat;
-    /* background-color: rgba(255,255,255, 0.5); */
-    /* opacity: 0.4; */
-    height: calc(100vh - 50px);
-    background-size: cover;
-    display: flex;
-    align-items: center;
+	background: linear-gradient(
+			to bottom,
+			rgba(10, 10, 10, 1) -25%,
+			rgba(0, 0, 0, 0.5) 50%,
+			rgba(10, 10, 10, 1) 125%
+		),
+		url(../img/website_bg.jpg) center no-repeat;
+	/* background-color: rgba(255,255,255, 0.5); */
+	/* opacity: 0.4; */
+	height: calc(100vh - 50px);
+	background-size: cover;
+	display: flex;
+	align-items: center;
 }
