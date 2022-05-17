@@ -12,7 +12,7 @@
 	/* height: 100%; */
 	border-radius: 5px;
 	/* margin: 10px; */
-	transform: scale(0.9);
+	/* transform: scale(0.9); */
 	transition: transform 300ms, box-shadow 300ms;
 	cursor: pointer;
 	grid-row-start: 1;
@@ -36,12 +36,6 @@
     box-shadow: none;
 } */
 
-.swiper_wrapper:hover .row__poster:hover,
-.row__poster_large:hover {
-	transform: scale(1);
-	/* box-shadow: none !important; */
-}
-
 .row__poster_overlay {
 	/* height: 200px; */
 	width: 100%;
@@ -53,12 +47,22 @@
 	/* grid-template-columns: 1fr; */
 }
 
-.poster__description_icons {
+.poster__description {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #efefef;
+	visibility: hidden;
+  background: rgba(0,0,0,0.7);
+}
+
+.poster__description_content {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
 	/* grid-row-start: 1; */
 	/* grid-column-start: 1; */
-	/* visibility: hidden; */
 	/* height: fit-content; */
-	position: absolute;
+	/* position: absolute; */
 	/* border: solid; */
 	/* top: 0; */
 	/* right: 0; */
@@ -68,6 +72,10 @@
 	/* height: fit-content; */
 	/* z-index: 1; */
 	/* margin-top: -25px; */
+}
+
+.poster__description_text {
+  font-size: 0.8em;
 }
 
 .row__poster:hover .poster__description,

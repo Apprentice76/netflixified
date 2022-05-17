@@ -1,12 +1,15 @@
 import styles from '../styles/Row.module.css'
+import { getGenre } from '../config/requests'
 import {
-	PlayCircleOutlineRounded,
-	AddCircleOutlineRounded,
-} from '@material-ui/icons'
-import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded'
+	ExpandCircleDown,
+	// AddCircleOutlineRounded,
+	AddCircleRounded,
+	CheckCircleOutline,
+} from '@mui/icons-material'
 // import firebaseDb from '../config/firebase'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion/dist/framer-motion'
 
 // Swiper Modules
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
@@ -18,9 +21,43 @@ import 'swiper/modules/navigation/navigation.min.css'
 import 'swiper/modules/pagination/pagination.min.css'
 
 const Row = (props) => {
-	const { title, movieType, large } = props
+	const { title, movieType, list, setList, large } = props
 	const [rowData, setRowData] = useState([])
-	const [onHover, setOnHover] = useState({})
+	// const [onHover, setOnHover] = useState({})
+	// const [hovered, setHovered] = useState(null)
+	// const [prevHovered, setPrevHovered] = useState(null)
+
+	// useEffect(() => {
+	// 	const slides = document.querySelectorAll('.swiper-slide')
+	// 	slides.forEach((slide) => {
+	// 		slide.firstChild.style.boxShadow = 'none'
+	// 	})
+	// 	if (
+	// 		hovered &&
+	// 		(hovered.classList.contains(styles.row__poster) ||
+	// 			hovered.classList.contains(styles.row__poster_large))
+	// 	) {
+	// 		const siblings = hovered?.parentNode.parentNode.childNodes
+	// 		// if (siblings)
+	// 		for (let i = 0; i < siblings.length; i++) {
+	// 			// if (siblings[i].firstChild !== hovered)
+	// 			siblings[i].firstChild.style.boxShadow =
+	// 				'inset 0 0 0 1000px rgba(0, 0, 0, 0.7)'
+	// 		}
+	// 		hovered.style.boxShadow = 'none'
+	// 	} else if (
+	// 		prevHovered &&
+	// 		(prevHovered.classList.contains(styles.row__poster) ||
+	// 			prevHovered.classList.contains(styles.row__poster_large))
+	// 	) {
+	// 		const siblings = prevHovered?.parentNode.parentNode.childNodes
+	// 		// if (siblings)
+	// 		for (let i = 0; i < siblings.length; i++) {
+	// 			// if (!siblings[i].firstChild) break
+	// 			siblings[i].firstChild.style.boxShadow = 'none'
+	// 		}
+	// 	}
+	// }, [hovered, prevHovered])
 
 	const fetchMovies = async (type) => {
 		// const moviesRef = firebaseDb.ref(`movies/${type}`)
@@ -40,34 +77,6 @@ const Row = (props) => {
 		fetchMovies(movieType)
 	}, [movieType])
 
-	const slides = document.querySelectorAll('.swiper-slide')
-	const posters = document.querySelectorAll('.swiper-slide > div')
-
-	for (let i = 0; i < slides.length; i++) {
-		slides[i].addEventListener('mouseenter', (e) => {
-			const siblings = e.target.parentNode.childNodes
-			e.target.style.boxShadow = 'none'
-			for (let j = 0; j < siblings.length; j++) {
-				if (siblings[j] !== e.target) {
-					siblings[j].firstChild.style.boxShadow =
-						'inset 0 0 0 1000px rgba(0, 0, 0, 0.7)'
-				}
-			}
-		})
-		slides[i].addEventListener('mouseleave', (e) => {
-			const siblings = e.target.parentNode.childNodes
-			for (let j = 0; j < siblings.length; j++) {
-				siblings[j].firstChild.style.boxShadow = 'none'
-			}
-		})
-		posters[i].addEventListener('mouseleave', (e) => {
-			const siblings = e.target.parentNode.parentNode.childNodes
-			for (let j = 0; j < siblings.length; j++) {
-				siblings[j].firstChild.firstChild.style.boxShadow = 'none'
-			}
-		})
-	}
-
 	return (
 		<div className={styles.row}>
 			<h3 className={styles.row__title}>{title}</h3>
@@ -75,7 +84,6 @@ const Row = (props) => {
 				modules={[Navigation, Pagination]}
 				spaceBetween={10}
 				slidesPerView={6}
-				speed={800}
 				breakpoints={{
 					0: {
 						slidesPerView: 2,
@@ -122,74 +130,121 @@ const Row = (props) => {
 											: {
 													backgroundImage: `url(https://image.tmdb.org/t/p/w300${movie.backdrop_path})`,
 											  }
-									}
-									// onMouseOver={() => console.log(movie)}
-								>
-									{/* <div className={styles.row__poster_overlay}> */}
+									}>
 									<div className={styles.poster__description}>
 										<div
 											className={
-												styles.poster__description_icons
+												styles.poster__description_content
 											}>
-											{onHover[movie.poster_path] ? (
-												<>
-													<PlayCircleOutlineRounded
-														className={
-															styles.poster__description_icon
-														}
-													/>
-													<AddCircleRoundedIcon
-														className={
-															styles.poster__description_icon
-														}
-														onMouseLeave={() =>
-															setOnHover(
-																(prev) => ({
-																	...prev,
-																	[`${movie.poster_path}`]: false,
-																})
-															)
-														}
-													/>
-												</>
-											) : (
-												<>
-													<PlayCircleOutlineRounded
-														className={
-															styles.poster__description_icon
-														}
-													/>
-													<AddCircleOutlineRounded
-														className={
-															styles.poster__description_icon
-														}
-														onMouseOver={() =>
-															setOnHover(
-																(prev) => ({
-																	...prev,
-																	[`${movie.poster_path}`]: true,
-																})
-															)
-														}
-													/>
-												</>
-											)}
+											<div
+												className={
+													styles.poster__description_text
+												}>
+												{getGenre(movie.genre_ids[0])}
+												{movie.genre_ids[1] && (
+													<>
+														&bull;
+														{getGenre(
+															movie.genre_ids[1]
+														)}
+													</>
+												)}
+												{movie.genre_ids[2] && (
+													<>
+														&bull;
+														{getGenre(
+															movie.genre_ids[2]
+														)}
+													</>
+												)}
+											</div>
+											{
+												list.find(
+													(id) => id === movie.id
+												) ? (
+													<>
+														<ExpandCircleDown
+															className={[
+																styles.poster__description_icon,
+																styles.poster__description_icon_expand,
+															]}
+														/>
+														<CheckCircleOutline
+															className={
+																styles.poster__description_icon
+															}
+															onClick={() =>
+																setList(
+																	(prev) =>
+																		prev.filter(
+																			(
+																				id
+																			) =>
+																				id !==
+																				movie.id
+																		)
+																)
+															}
+														/>
+													</>
+												) : (
+													// onHover[movie.poster_path] ?
+													<>
+														<ExpandCircleDown
+															className={[
+																styles.poster__description_icon,
+																styles.poster__description_icon_expand,
+															]}
+														/>
+														<AddCircleRounded
+															className={
+																styles.poster__description_icon
+															}
+															// onMouseOut={() => {
+															// 	setOnHover(
+															// 		(prev) => ({
+															// 			...prev,
+															// 			[`${movie.poster_path}`]: false,
+															// 		})
+															// 	)
+															// }}
+															onClick={() =>
+																setList(
+																	(prev) => [
+																		...prev,
+																		movie.id,
+																	]
+																)
+															}
+														/>
+													</>
+												)
+												// : (
+												// 	<>
+												// 		<ExpandCircleDown
+												// 			className={[
+												// 				styles.poster__description_icon,
+												// 				styles.poster__description_icon_expand,
+												// 			]}
+												// 		/>
+												// 		<AddCircleOutlineRounded
+												// 			className={
+												// 				styles.poster__description_icon
+												// 			}
+												// 			onMouseOver={(e) => {
+												// 				setOnHover(
+												// 					(prev) => ({
+												// 						...prev,
+												// 						[`${movie.poster_path}`]: true,
+												// 					})
+												// 				)
+												// 			}}
+												// 		/>
+												// 	</>
+												// )
+											}
 										</div>
 									</div>
-									{/* </div> */}
-									{/* <img
-										className={
-											large
-												? styles.row__poster_large
-												: styles.row__poster
-										}
-										src={
-											large
-												? `https://image.tmdb.org/t/p/w342${movie.poster_path}`
-												: `https://image.tmdb.org/t/p/w300${movie.backdrop_path}`
-										}
-										alt={movie.original_title}
-									/> */}
 								</div>
 							</SwiperSlide>
 						)
