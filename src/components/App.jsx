@@ -2,15 +2,12 @@
 import Home from './Home'
 import Login from './Login'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { AnimatePresence } from 'framer-motion/dist/framer-motion'
+import { AnimatePresence } from 'framer-motion'
 
 const App = () => {
 	return (
 		<Router>
-			<AnimatePresence
-				initial={false}
-				exitBeforeEnter={true}
-				onExitComplete={() => null}>
+			<AnimatePresence exitBeforeEnter>
 				<Switch>
 					<Route exact path='/'>
 						<Home />

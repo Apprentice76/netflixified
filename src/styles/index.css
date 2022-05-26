@@ -4,8 +4,6 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	/* font-family: 'Segoe UI', sans-serif; */
-	/* color: aliceblue; */
 }
 
 body {
@@ -13,6 +11,7 @@ body {
   overflow-x: hidden;
 }
 
+/* swiper mouseover animation */
 @media (min-width: 1200px) {
   .swiper-slide:nth-child(6n) {
     transform-origin: center right;
@@ -45,25 +44,19 @@ body {
 
 .swiper {
 	overflow: visible;
-  /* overflow-x: hidden; */
-  /* border: solid green; */
   height: 100%;
   width: 100%;
-  padding: 0 55px;
+  padding: 0 50px;
 }
 
 .swiper-slide {
-	/* margin: 0 0 0 15px; */
-	/* transform-origin: center left; */
   position: relative;
 	transition: transform 300ms, z-index 100ms;
 }
 
 .swiper-slide:hover {
-	/* padding: 0px 10px; */
   z-index: 999 !important;
 	transform: scale(1.2);
-	/* margin: 0 15px 0; */
 }
 
 .swiper-slide-active {
@@ -74,21 +67,23 @@ body {
   transform-origin: center right;
 }
 
-.swiper-wrapper {
-	/* margin: 40px 0 0; */
-	align-items: center;
-  /* border: solid orange; */
-	/* height: calc(initial + 50px); */
-	/* overflow-x: hidden; */
-  /* overflow: auto; */
+.swiper-wrapper:hover .swiper-slide > div {
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.7);
 }
 
+.swiper-slide > div:hover {
+  box-shadow: none !important;
+}
+
+/* swiper buttons */
 .swiper-button-prev {
   left: 0;
+  border-radius: 0 8px 8px 0;
 }
 
 .swiper-button-next {
   right: 0;
+  border-radius: 8px 0 0 8px;
 }
 
 .swiper-button-prev,
@@ -96,12 +91,8 @@ body {
 	color: #e0e0e0;
 	font-weight: 1000;
 	text-shadow: 0px 0px 8px #fff;
-	/* border: solid green; */
-	background: #0e0e0e;
-  opacity: 0.7;
-	/* padding: 50px 30px; */
-  width: 50px;
-	/* transform: translateY(-25%) */
+	background: rgba(0, 0, 0, 0.6);
+  width: 40px;
   top: 0;
   margin-top: 0;
 	height: 100%;
@@ -129,28 +120,22 @@ body {
 	opacity: 0;
 }
 
+/* swiper pagination */
 .swiper-button-prev:hover ~ .swiper-pagination, .swiper-button-next:hover ~ .swiper-pagination {
   opacity: 1;
 }
 
 .swiper-pagination {
-  /* border: solid orange; */
-  /* margin: 0 0 0 50px; */
   opacity: 0;
 	position: absolute;
   justify-content: flex-end;
 	top: -30px;
-	/* right: 0px; */
   text-align: right;
   padding-right: 10px;
-  /* width: fit-content !important; */
-  /* bottom: 95%; */
-	/* width: auto !important; */
 	height: 20px;
   transition: 300ms opacity cubic-bezier(0.39, 0.575, 0.565, 1);
-	/* left: auto !important; */
-	/* z-index: -1 !important; */
 }
+
 .swiper-pagination-bullet {
 	padding: 0px 10px;
 	border-radius: 0;
@@ -162,6 +147,7 @@ body {
 	position: relative;
 	top: 1px;
 }
+
 .swiper-pagination-bullet-active {
 	color: #fff;
 	background: #fff;
@@ -169,11 +155,84 @@ body {
 	top: 1px;
 }
 
-.swiper-wrapper:hover .swiper-slide > div {
-  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.7);
+/* modal */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  width: clamp(50%, 700px, 90%);
+  /* height: min(50vh, 300px); */
+  height: 80vh;
+  margin: auto;
+  /* padding: 0 2rem; */
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  display: flex;
+  flex-flow: column;
 }
 
-.swiper-slide > div:hover {
-  box-shadow: none !important;
-  /* box-shadow: 0 0 25px rgba(255, 255, 255, 0); */
+.modal__banner {
+  /* height: 60vh; */
+  flex: 1;
+  width: 100%;
+	background-size: cover;
+	background-repeat: no-repeat;
+  background-position: center center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.modal__banner_icon {
+  position: absolute;
+  color: #efefef;
+  font-size: 2.5em !important;
+  top: 15px;
+  right: 25px;
+  cursor: pointer;
+}
+
+.modal__content {
+  /* padding: 15px 25px; */
+  font-size: 1.2em;
+  color: #efefef;
+  height: fit-content;
+  background: #3f3f3f;
+  position: relative;
+  text-align: justify;
+  border: solid;
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+.modal__content_overview {
+  padding: 0 25px 15px;
+  background: #0f0f0f;
+}
+
+.modal__content_title {
+  text-shadow: -2px -2px 18px #0f0f0f, 2px 2px 18px #0f0f0f;
+  position: absolute;
+  top: -45px;
+  left: 25px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.modal__content_genres {
+  font-weight: bold;
+  padding: 15px 25px 10px;
+  background: #0f0f0f;
+  position: relative;
+}
+
+.modal__content_icon {
+  position: absolute;
+  top: 7px;
+  font-size: 2.5rem !important;
+  right: 22px;
+  cursor: pointer;
 }

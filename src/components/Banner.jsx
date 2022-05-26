@@ -1,10 +1,10 @@
 import styles from '../styles/Banner.module.css'
-import { PlayArrow, InfoOutlined } from '@material-ui/icons'
+import { PlayArrow, InfoOutlined } from '@mui/icons-material'
 import { useState, useEffect } from 'react'
 import requests from '../config/requests'
 import axios from 'axios'
 
-const Banner = ({ type }) => {
+const Banner = ({ type, setMovie, openModal }) => {
 	const [loaded, setLoaded] = useState(false)
 	const [bannerData, setBannerData] = useState({})
 
@@ -20,18 +20,6 @@ const Banner = ({ type }) => {
 		})
 	}, [])
 
-	// const BannerStyle = component.div`
-	//     background: linear-gradient(
-	//                 to bottom,
-	//                 rgba(239, 239, 239, 0) 0%,
-	//                 rgba(10, 10, 10, 1) 90%
-	//             ), url('https://image.tmdb.org/t/p/original/${bannerImg}') no-repeat center;
-	//     background-size: cover;
-	//     height: 60vh;
-	//     padding: 0 25px;
-	// 	backgroundImage:
-	// `
-	// console.log(bannerData.backdrop_path)
 	const bannerStyle = {
 		background: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(10, 10, 10, 1) 90%), url('https://image.tmdb.org/t/p/original/${bannerData.backdrop_path}') no-repeat center top/cover`,
 		height: '90vh',
@@ -66,12 +54,24 @@ const Banner = ({ type }) => {
 						: 'Movie Description...'}
 				</div>
 				<div className={styles.banner__button_container}>
-					<button className={styles.banner__button_play}>
+					<button
+						className={styles.banner__button_play}
+						onClick={() => {
+							setMovie(bannerData)
+							openModal()
+						}}>
 						<PlayArrow className={styles.banner__button_icon} />
 						<span>Play</span>
 					</button>
-					<button className={styles.banner__button_info}>
-						<InfoOutlined className={styles.banner__button_icon} />
+					<button
+						className={styles.banner__button_info}
+						onClick={() => {
+							setMovie(bannerData)
+							openModal()
+						}}>
+						<InfoOutlined
+							className={styles.banner__button_icon}
+						/>
 						<span>Info</span>
 					</button>
 				</div>

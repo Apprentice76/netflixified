@@ -1,6 +1,6 @@
 import styles from '../styles/Header.module.css'
 import { useState, useEffect } from 'react'
-import { Search, Notifications, ArrowDropDown } from '@material-ui/icons'
+import { Search, Notifications, ArrowDropDown } from '@mui/icons-material'
 
 const Header = () => {
 	const [navTransition, setNavTransition] = useState(false)

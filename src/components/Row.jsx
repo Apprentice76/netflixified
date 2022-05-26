@@ -2,14 +2,13 @@ import styles from '../styles/Row.module.css'
 import { getGenre } from '../config/requests'
 import {
 	ExpandCircleDown,
-	// AddCircleOutlineRounded,
 	AddCircleRounded,
 	CheckCircleOutline,
 } from '@mui/icons-material'
 // import firebaseDb from '../config/firebase'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion/dist/framer-motion'
+// import { motion } from 'framer-motion/dist/framer-motion'
 
 // Swiper Modules
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
@@ -21,43 +20,9 @@ import 'swiper/modules/navigation/navigation.min.css'
 import 'swiper/modules/pagination/pagination.min.css'
 
 const Row = (props) => {
-	const { title, movieType, list, setList, large } = props
+	const { title, movieType, list, setList, setMovie, openModal, large } =
+		props
 	const [rowData, setRowData] = useState([])
-	// const [onHover, setOnHover] = useState({})
-	// const [hovered, setHovered] = useState(null)
-	// const [prevHovered, setPrevHovered] = useState(null)
-
-	// useEffect(() => {
-	// 	const slides = document.querySelectorAll('.swiper-slide')
-	// 	slides.forEach((slide) => {
-	// 		slide.firstChild.style.boxShadow = 'none'
-	// 	})
-	// 	if (
-	// 		hovered &&
-	// 		(hovered.classList.contains(styles.row__poster) ||
-	// 			hovered.classList.contains(styles.row__poster_large))
-	// 	) {
-	// 		const siblings = hovered?.parentNode.parentNode.childNodes
-	// 		// if (siblings)
-	// 		for (let i = 0; i < siblings.length; i++) {
-	// 			// if (siblings[i].firstChild !== hovered)
-	// 			siblings[i].firstChild.style.boxShadow =
-	// 				'inset 0 0 0 1000px rgba(0, 0, 0, 0.7)'
-	// 		}
-	// 		hovered.style.boxShadow = 'none'
-	// 	} else if (
-	// 		prevHovered &&
-	// 		(prevHovered.classList.contains(styles.row__poster) ||
-	// 			prevHovered.classList.contains(styles.row__poster_large))
-	// 	) {
-	// 		const siblings = prevHovered?.parentNode.parentNode.childNodes
-	// 		// if (siblings)
-	// 		for (let i = 0; i < siblings.length; i++) {
-	// 			// if (!siblings[i].firstChild) break
-	// 			siblings[i].firstChild.style.boxShadow = 'none'
-	// 		}
-	// 	}
-	// }, [hovered, prevHovered])
 
 	const fetchMovies = async (type) => {
 		// const moviesRef = firebaseDb.ref(`movies/${type}`)
@@ -158,99 +123,62 @@ const Row = (props) => {
 													</>
 												)}
 											</div>
-											{
-												list.find(
-													(id) => id === movie.id
-												) ? (
-													<>
-														<ExpandCircleDown
-															className={[
-																styles.poster__description_icon,
-																styles.poster__description_icon_expand,
-															]}
-														/>
-														<CheckCircleOutline
-															className={
-																styles.poster__description_icon
-															}
-															onClick={() =>
-																setList(
-																	(prev) =>
-																		prev.filter(
-																			(
-																				id
-																			) =>
-																				id !==
-																				movie.id
-																		)
+											{/* poster description text */}
+											<ExpandCircleDown
+												className={
+													styles.poster__description_icon_expand
+												}
+												onClick={() => {
+													openModal()
+													setMovie(movie)
+												}}
+											/>
+											{list.find(
+												(id) => id === movie.id
+											) ? (
+												<>
+													<CheckCircleOutline
+														className={
+															styles.poster__description_icon
+														}
+														onClick={() =>
+															setList((prev) =>
+																prev.filter(
+																	(id) =>
+																		id !==
+																		movie.id
 																)
-															}
-														/>
-													</>
-												) : (
-													// onHover[movie.poster_path] ?
-													<>
-														<ExpandCircleDown
-															className={[
-																styles.poster__description_icon,
-																styles.poster__description_icon_expand,
-															]}
-														/>
-														<AddCircleRounded
-															className={
-																styles.poster__description_icon
-															}
-															// onMouseOut={() => {
-															// 	setOnHover(
-															// 		(prev) => ({
-															// 			...prev,
-															// 			[`${movie.poster_path}`]: false,
-															// 		})
-															// 	)
-															// }}
-															onClick={() =>
-																setList(
-																	(prev) => [
-																		...prev,
-																		movie.id,
-																	]
-																)
-															}
-														/>
-													</>
-												)
-												// : (
-												// 	<>
-												// 		<ExpandCircleDown
-												// 			className={[
-												// 				styles.poster__description_icon,
-												// 				styles.poster__description_icon_expand,
-												// 			]}
-												// 		/>
-												// 		<AddCircleOutlineRounded
-												// 			className={
-												// 				styles.poster__description_icon
-												// 			}
-												// 			onMouseOver={(e) => {
-												// 				setOnHover(
-												// 					(prev) => ({
-												// 						...prev,
-												// 						[`${movie.poster_path}`]: true,
-												// 					})
-												// 				)
-												// 			}}
-												// 		/>
-												// 	</>
-												// )
-											}
+															)
+														}
+													/>
+												</>
+											) : (
+												<>
+													<AddCircleRounded
+														className={
+															styles.poster__description_icon
+														}
+														onClick={() =>
+															setList((prev) => [
+																...prev,
+																movie.id,
+															])
+														}
+													/>
+												</>
+											)}
 										</div>
+										{/* poster description content */}
 									</div>
+									{/* poster description */}
 								</div>
+								{/* row poster */}
 							</SwiperSlide>
 						)
 				)}
 			</Swiper>
 		</div>
+		// row
 	)
 }
 
